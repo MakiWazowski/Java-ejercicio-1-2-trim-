@@ -53,7 +53,7 @@ private	int[] maximos (int[] lista){
              
          }
          }
-         //Ahora en auxiliar tengo el sting pero sin espacios en blanco 
+         //Ahora en auxiliar tengo el string pero sin espacios en blanco 
          int indiceIzq = 0;
          int indiceDrch = auxiliar.length()-1;
          
@@ -74,11 +74,109 @@ private	int[] maximos (int[] lista){
             //System.out.println("NO ES UN PALINDROMO, PRINGAO ");
          }
          
-        return esPalindromo;// hay que cambiar esto luego para qque funcione 
+        return esPalindromo;// hay que cambiar esto luego para que funcione 
     }
     
+    private boolean isograma (String palabra){
+      //bucle para ver cual de las letras estoy mirando 
+        //length-1 para que cuando llegue a la ultima no compare con un espacio 
+         for (int i=0;i< palabra.length()-1; i++){
+             //ir comprobando si son iguales las letras una a una
+             //i+1 para que no se compare consigo misma y te de false 
+             for (int j=i+1;j< palabra.length(); j++){
+                 //comparamos la primera letra con la siguiente 
+                 if(palabra.charAt(j)==palabra.charAt(i)){
+                     return false;
+                 }
+             
+            }
+        
+        }
+      return true;
+   }
     
-    
+    private void imprimeMes(int num ) {
+        //filtra el numero para que siempre valga meos de 7 
+        num = num % 7;
+        
+      int contador = 0;
+
+  //tantas x como num haya 
+        for(int j=0;j<num ; j++){
+            System.out.print("XX"+" ");
+            contador = contador + 1 ;
+        }
+        for(int i=1;i<=31; i++){
+            if(contador<=7){
+                if(i<=9){
+            System.out.print("0"+ i +" ");
+        }
+                if(i>9){
+                    System.out.print(" "+ i);
+                }
+                contador = contador + 1 ;
+            }
+            if(contador == 7){
+                System.out.println("");
+                contador = 0;
+            }
+        
+        }
+  
+    for(int x=contador;x<7; x++){
+            System.out.print(" XX");
+          }
+    }
+
+    private boolean esAnagrama (String palabraA , String palabraB ){
+        //quitamos los espacios de las dos palabras 
+        String auxiliarA = "";
+         for (int i=0;i< palabraA.length(); i++){
+             if(palabraA.charAt(i) != ' '){
+                 auxiliarA = auxiliarA + palabraA.charAt(i);
+             
+         }
+         }
+          String auxiliarB = "";
+         for (int i=0;i< palabraB.length(); i++){
+             if(palabraB.charAt(i) != ' '){
+                 auxiliarB = auxiliarB + palabraB.charAt(i);
+             
+         }
+         }
+         
+        //pasamos a mayusculas todas las letras 
+        palabraA = palabraA.toUpperCase();
+        palabraB = palabraB.toUpperCase();
+        
+        //indica si las palabras son anagramas o no 
+        boolean anagrama = false;
+      
+       //solo empiezo a chequear si las dos palabras tienen la misma longitud 
+       if (palabraA.length() == palabraB.length()){
+       for (int i=0;i< palabraA.length(); i++){
+           int posicion=0;
+           //compara la primera letra con las de la otra palabra
+        while ( posicion < palabraB.length() && palabraA.charAt(i)!= palabraB.charAt(posicion)){
+               posicion ++;
+           }
+           if (posicion==palabraB.length()){
+               //la letra no estaba 
+               return false;
+           }
+           else{
+               //la letra esta en b , asi que la elimino para no volverla 
+               //a leer en la siguiente vuelta 
+           palabraB=palabraB.substring(0,posicion) + palabraB.substring(posicion+1);
+       }
+       }
+       //cuando no quedan letras en B que comparar por que coinciden 
+        if(palabraB.length() == 0 ){
+            return true;
+        }
+    }
+       return anagrama;
+    }
     /**
      * @param args the command line arguments
      */
@@ -102,6 +200,30 @@ private	int[] maximos (int[] lista){
         System.out.println(ejercicios.palindromo("HOLA CARACULO"));
         
         System.out.println(ejercicios.palindromo("TACOCAT"));
+        
+        System.out.println(ejercicios.isograma("murcielago"));
+        
+        System.out.println(ejercicios.isograma("noob"));
+        
+        System.out.println(ejercicios.isograma("estupido"));
+        
+       System.out.println(ejercicios.isograma("hola"));
+        
+       System.out.println(ejercicios.isograma("abecedario"));
+        
+      //  ejercicios.imprimeMes(3);
+        
+        System.out.println("roma amor " + ejercicios.esAnagrama("roma","amor"));
+        
+        System.out.println("i am lord voldemort " + ejercicios.esAnagrama("i am lord voldemort","tom marvolo riddle"));
+         
+        System.out.println("jamon monja " + ejercicios.esAnagrama("jamon","monja"));
+        
+        System.out.println("cabron bronca " + ejercicios.esAnagrama("cabron","bronca"));
+        
+        System.out.println("elija anomalia  " + ejercicios.esAnagrama("elija","anomalia"));
+        
+        System.out.println("jamon pepee " + ejercicios.esAnagrama("jamon","pepee"));
         
     }
     
