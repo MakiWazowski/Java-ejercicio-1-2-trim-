@@ -130,7 +130,7 @@ private	int[] maximos (int[] lista){
 
     private boolean esAnagrama (String palabraA , String palabraB ){
         //quitamos los espacios de las dos palabras 
-        String auxiliarA = "";
+     /*   String auxiliarA = "";
          for (int i=0;i< palabraA.length(); i++){
              if(palabraA.charAt(i) != ' '){
                  auxiliarA = auxiliarA + palabraA.charAt(i);
@@ -144,10 +144,12 @@ private	int[] maximos (int[] lista){
              
          }
          }
-         
+         */
         //pasamos a mayusculas todas las letras 
         palabraA = palabraA.toUpperCase();
         palabraB = palabraB.toUpperCase();
+        palabraA = quitaEspacios(palabraA);
+        palabraB = quitaEspacios(palabraB);
         
         //indica si las palabras son anagramas o no 
         boolean anagrama = false;
@@ -176,6 +178,15 @@ private	int[] maximos (int[] lista){
         }
     }
        return anagrama;
+    }
+    private String quitaEspacios (String frase){
+        String auxiliar = "";
+         for (int i=0;i< frase.length(); i++){
+             if(frase.charAt(i) != ' '){
+                 auxiliar = auxiliar + frase.charAt(i);
+    }
+         }
+         return auxiliar;
     }
     /**
      * @param args the command line arguments
@@ -222,8 +233,6 @@ private	int[] maximos (int[] lista){
         System.out.println("cabron bronca " + ejercicios.esAnagrama("cabron","bronca"));
         
         System.out.println("elija anomalia  " + ejercicios.esAnagrama("elija","anomalia"));
-        
-        System.out.println("jamon pepee " + ejercicios.esAnagrama("jamon","pepee"));
         
     }
     
